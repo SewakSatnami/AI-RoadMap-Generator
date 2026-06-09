@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Roadmap</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/roadmap.css') }}">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo-box">
+            <i class="fa-solid fa-sparkles"></i> AI-SRS
+        </div>
+
+        <a href="/dashboard" class="nav-btn">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+    </div>
+
+    <!-- MAIN -->
+    <div class="roadmap-wrapper">
+
+        <!-- TITLE -->
+        <h1 class="roadmap-title">
+            <i class="fa-solid fa-diagram-project"></i>
+            Your AI Learning Roadmap
+        </h1>
+
+        <!-- SUBTITLE -->
+        <h2 class="roadmap-subtitle">
+            {{ topic }} Roadmap ({{ level }} • {{ weeks }} Weeks)
+        </h2>
+
+        <!-- DOWNLOAD BUTTON (BACKEND PDF) -->
+        <div class="download-section">
+            <a href="/download-pdf?roadmap={{ roadmap|urlencode }}&topic={{ topic }}&level={{ level }}&weeks={{ weeks }}"
+                class="download-btn">
+                <i class="fa-solid fa-download"></i> Download Roadmap
+            </a>
+        </div>
+
+        <!-- ROADMAP GRID -->
+        <div class="roadmap-container">
+
+            {% set weeks_list = roadmap.split('Week')[1:] %}
+
+            {% for week in weeks_list %}
+            <div class="roadmap-card">
+
+                <!-- WEEK TITLE -->
+                <h3 class="week-title">
+                    <i class="fa-solid fa-calendar"></i>
+                    Week {{ loop.index }}
+                </h3>
+
+                <!-- TOPICS -->
+                <ul class="week-list">
+                    {% for line in week.split('\n') if '-' in line %}
+                    <li>
+                        <span class="icon">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                        <span class="text">
+                            {{ line.replace('-', '').strip() }}
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

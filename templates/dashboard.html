@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI SRS Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="rain"></div>
+    <div class="stars"></div>
+    <div class="snow"></div>
+    <div class="bg"></div>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo-box">
+            <span class="logo-text">SRS</span>
+        </div>
+
+        <div class="nav-actions">
+            <a href="/history" class="nav-btn">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </a>
+
+            <a href="/logout" class="nav-btn logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- CARD -->
+        <div class="card">
+
+            <h1><i class="fa-solid fa-sparkles sparkle"></i>AI ROADMAP GENERATOR</h1>
+
+            <form method="POST" action="/generate" id="form">
+
+                <input type="text" name="topic" placeholder="Enter Roadmap Domain (e.g. Frontend, AI)" required>
+
+                <!-- DROPDOWN -->
+                <div class="dropdown">
+                    <div class="dropdown-btn">
+                        Select Level <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+
+                    <div class="dropdown-content">
+                        <div data-value="Beginner">Beginner</div>
+                        <div data-value="Intermediate">Intermediate</div>
+                        <div data-value="Advanced">Advanced</div>
+                    </div>
+
+                    <input type="hidden" name="level" id="level">
+                </div>
+
+                <input type="text" name="weeks" placeholder="Duration (e.g. 4 weeks, 6 weeks)" required>
+
+                <button type="submit">
+                    GENERATE ROADMAP
+                </button>
+
+            </form>
+        </div>
+
+        <!-- ROBOT -->
+        <div class="robot">
+            <img src="{{ url_for('static', filename='images/robot-2.png') }}">
+        </div>
+
+    </div>
+
+    <script>
+        const btn = document.querySelector(".dropdown-btn");
+        const content = document.querySelector(".dropdown-content");
+        const input = document.getElementById("level");
+
+        btn.onclick = () => content.classList.toggle("show");
+
+        content.querySelectorAll("div").forEach(item => {
+            item.onclick = () => {
+                btn.innerHTML = item.innerText + ' <i class="fa-solid fa-chevron-down"></i>';
+                input.value = item.dataset.value;
+                content.classList.remove("show");
+            };
+        });
+
+        const snowContainer = document.querySelector('.snow');
+
+        for (let i = 0; i < 16; i++) {
+            let snow = document.createElement('span');
+            snow.style.left = Math.random() * 100 + "vw";
+            snow.style.animationDuration = (3 + Math.random() * 5) + "s";
+            snow.style.opacity = Math.random();
+            snowContainer.appendChild(snow);
+        }
+
+        const stars = document.querySelector('.stars');
+
+        setInterval(() => {
+            let star = document.createElement('span');
+            star.style.left = Math.random() * window.innerWidth + "px";
+            star.style.top = Math.random() * 200 + "px";
+            stars.appendChild(star);
+
+            setTimeout(() => star.remove(), 2000);
+        }, 800);
+
+        
+    </script>
+
+</body>
+
+</html>

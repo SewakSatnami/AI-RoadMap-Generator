@@ -1,0 +1,578 @@
+/* ===== BASE ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: transparent;
+    color: white;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    background: radial-gradient(circle at center,
+        rgba(56,189,248,0.2),
+        transparent 60%);
+
+    pointer-events: none;
+}
+
+/* ===== BACKGROUND ===== */
+.bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: url("../images/dashboard-bg.png") center/cover no-repeat;
+    z-index: -1;
+}
+
+
+/* ===== CLEAN TRANSPARENT NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45px;
+
+    padding: 0 40px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(10, 20, 60, 0.2);
+    /* ✅ FULLY TRANSPARENT */
+    backdrop-filter: blur(6px);
+    /* very light blur */
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    z-index: 1000;
+}
+
+/* ===== LOGO ===== */
+.logo-box {
+    font-size: 18px;
+    font-weight: 600;
+    color: #aeefff;
+
+    padding: 6px 12px;
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.logo-text {
+    font-size: 16px;
+    /* smaller */
+}
+
+
+/* ===== NAV BUTTONS ===== */
+.nav-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 12px;
+
+    border-radius: 8px;
+    font-size: 13px;
+
+    text-decoration: none;
+    color: white;
+
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    transition: 0.2s ease;
+}
+
+.nav-btn i {
+    font-size: 13px;
+}
+
+/* HOVER */
+.nav-btn:hover {
+    background: rgba(0, 198, 255, 0.15);
+    border-color: rgba(0, 198, 255, 0.4);
+}
+
+/* ICON */
+.nav-btn i {
+    font-size: 14px;
+    color: #00c6ff;
+}
+
+/* HOVER EFFECT */
+.nav-btn:hover {
+    background: rgba(0, 198, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* SHINE EFFECT */
+.nav-btn::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.nav-btn:hover::before {
+    left: 100%;
+}
+
+/* LOGOUT SPECIAL COLOR */
+.logout {
+    border-color: rgba(255, 80, 80, 0.4);
+}
+
+.logout i {
+    color: #ff6b6b;
+}
+
+.logout:hover {
+    background: rgba(255, 80, 80, 0.2);
+    box-shadow: 0 0 15px rgba(255, 80, 80, 0.6);
+}
+
+/* LOGO ANIMATION */
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px rgba(0, 198, 255, 0.4);
+    }
+
+    to {
+        box-shadow: 0 0 25px rgba(0, 198, 255, 0.9);
+    }
+}
+
+/* ===== MAIN ===== */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    padding-top: 80px;
+    gap: 60px;
+}
+
+/* ===== CARD ===== */
+.card {
+    width: 500px;
+    padding: 40px;
+    border-radius: 20px;
+
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.3);
+
+    border: 1px solid rgba(0, 198, 255, 0.5);
+
+    box-shadow: 0 0 40px rgba(21, 191, 252, 0.555);
+}
+
+.card h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ===== FORM ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+input {
+    height: 55px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 198, 255, 0.5);
+    background: transparent;
+    color: white;
+    padding: 0 15px;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    height: 55px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 198, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    position: absolute;
+    width: 100%;
+    background: #0b1c3a;
+    border-radius: 10px;
+    margin-top: 5px;
+    display: none;
+}
+
+.dropdown-content div {
+    padding: 12px;
+    cursor: pointer;
+}
+
+.dropdown-content div:hover {
+    background: rgba(0, 198, 255, 0.3);
+}
+
+.show {
+    display: block;
+}
+
+/* ===== BUTTON ===== */
+button {
+    height: 55px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* ===== ROBOT ===== */
+.robot {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ROBOT IMAGE */
+.robot img {
+    width: 350px;
+    position: relative;
+    z-index: 3;
+
+    /* ✨ SMOOTH BOTTOM BLEND */
+    -webkit-mask-image: linear-gradient(to bottom,
+        rgba(0,0,0,1) 72%,
+        rgba(0,0,0,0.7) 85%,
+        rgba(0,0,0,0.3) 95%,
+        rgba(0,0,0,0) 100%);
+        
+    mask-image: linear-gradient(to bottom,
+        rgba(0,0,0,1) 72%,
+        rgba(0,0,0,0.7) 85%,
+        rgba(0,0,0,0.3) 95%,
+        rgba(0,0,0,0) 100%);
+
+    animation: floatRobot 4s ease-in-out infinite;
+}
+
+/* 🌟 MAIN OUTER GLOW (BIG SOFT) */
+.robot::before {
+    content: "";
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(circle,
+        rgba(0,198,255,0.7) 0%,
+        rgba(0,198,255,0.4) 30%,
+        rgba(0,198,255,0.2) 50%,
+        transparent 75%);
+
+    filter: blur(60px);
+    z-index: 1;
+}
+
+/* ✨ INNER GLOW (DEPTH EFFECT) */
+.robot::after {
+    content: "";
+    position: absolute;
+
+    width: 400px;
+    height: 400px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(circle,
+        rgba(0,198,255,0.5),
+        transparent 70%);
+
+    filter: blur(25px);
+    z-index: 2;
+}
+
+/* 🔵 AI STAND (BOTTOM PLATFORM) */
+.robot .stand {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 260px;
+    height: 80px;
+
+    background: radial-gradient(ellipse,
+        rgba(0,198,255,0.6) 0%,
+        rgba(0,198,255,0.3) 40%,
+        rgba(0,198,255,0.1) 60%,
+        transparent 75%);
+
+    filter: blur(20px);
+    z-index: 1;
+
+    animation: standPulse 2s infinite alternate;
+}
+
+/* ✨ INNER CORE OF STAND */
+.robot .stand::before {
+    content: "";
+    position: absolute;
+
+    width: 150px;
+    height: 30px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(ellipse,
+        rgba(0,198,255,0.9),
+        transparent 70%);
+
+    filter: blur(8px);
+}
+
+/* FLOAT ANIMATION */
+@keyframes floatRobot {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* STAND PULSE */
+@keyframes standPulse {
+    from {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.08);
+    }
+}
+
+.snow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.snow span {
+    position: absolute;
+    top: -10px;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: snowFall linear infinite;
+}
+
+@keyframes snowFall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+
+
+.stars span {
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(white, transparent);
+    opacity: 0.8;
+    transform: rotate(45deg);
+    animation: shoot 2s linear infinite;
+}
+
+@keyframes shoot {
+    0% {
+        transform: translate(0,0) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-300px,300px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+
+.rain span {
+    position: absolute;
+    width: 2px;
+    height: 15px;
+    background: rgba(255,255,255,0.6);
+    animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+/* ===== TABLET ===== */
+@media (max-width: 1024px) {
+
+    .main {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .glass-card {
+        width: 90%;
+        max-width: 500px;
+    }
+
+    .robot img {
+        width: 280px;
+    }
+
+    .robot .stand {
+        width: 220px;
+        height: 70px;
+    }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+    .navbar {
+        padding: 0 15px;
+        height: 50px;
+    }
+
+    .logo-text {
+        font-size: 14px;
+    }
+
+    .nav-btn span {
+        display: none; /* hide text, show only icon */
+    }
+
+    .nav-btn {
+        padding: 6px 10px;
+    }
+
+    /* MAIN */
+    .main {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        gap: 25px;
+    }
+
+    /* CARD */
+    .glass-card {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    input {
+        height: 45px;
+        font-size: 13px;
+    }
+
+    .generate-btn {
+        height: 45px;
+        font-size: 14px;
+    }
+
+    /* ROBOT */
+    .robot img {
+        width: 220px;
+    }
+
+    .robot .stand {
+        width: 180px;
+        height: 60px;
+    }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 480px) {
+
+    .glass-card {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+
+    input {
+        height: 40px;
+    }
+
+    .generate-btn {
+        height: 42px;
+    }
+
+    .robot img {
+        width: 180px;
+    }
+}
