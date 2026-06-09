@@ -8,8 +8,10 @@ body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     background: radial-gradient(circle at top, #3a3fb0, #1c1f6e);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
+    min-height: 100vh;
 }
 
 /* STAR BACKGROUND */
@@ -99,6 +101,55 @@ body::after {
     width: 350px;
     animation: float 4s ease-in-out infinite;
     filter: drop-shadow(0 0 25px #00c6ff);
+}
+
+@media (max-width: 900px) {
+    .glass {
+        flex-direction: column;
+        width: 95%;
+        height: auto;
+        min-height: 100vh;
+        padding: 30px 20px;
+    }
+
+    .left,
+    .right {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .right {
+        padding: 40px 20px;
+        align-items: stretch;
+    }
+
+    .robot {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
+@media (max-width: 600px) {
+    .glass {
+        border-radius: 20px;
+        padding: 24px 16px;
+    }
+
+    .right {
+        padding: 30px 16px;
+    }
+
+    .robot {
+        max-width: 240px;
+    }
+
+    .right h2 {
+        font-size: 28px;
+    }
+
+    button {
+        padding: 12px;
+    }
 }
 
 @keyframes float {
