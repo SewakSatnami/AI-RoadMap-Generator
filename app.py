@@ -2,8 +2,12 @@ from flask import Flask, render_template, request, redirect, session, jsonify, s
 from pymongo import MongoClient
 from flask_wtf import CSRFProtect
 from groq import Groq
+from dotenv import load_dotenv
 import os
 import urllib.parse
+
+# Load .env values
+load_dotenv()
 
 # PDF
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, ListFlowable
@@ -21,7 +25,7 @@ groq_client = Groq(api_key=groq_api_key)
 
 # ---------------- FLASK ---------------- #
 app = Flask(__name__)
-app.secret_key = "samir_secret_123"
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "samir_secret_123")
 
 csrf = CSRFProtect(app)
 app.config['WTF_CSRF_ENABLED'] = False
